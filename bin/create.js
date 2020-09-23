@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require("fs-extra");
 const path = require("path");
 const { exec } = require("child_process");
@@ -52,7 +53,8 @@ exec(
       fs.writeFile(packageJSON, data, (err2) => err2 || true);
     });
 
-    const filesToCopy = [
+    const filesToCopy = [	
+      ".babelrc",
       ".eslintrc.json",
       ".prettierrc.js",
       "webpack.config.js"
@@ -80,6 +82,15 @@ exec(
         }
         console.log(npmStdout);
         console.log("Dependencies installed");
+
+        console.log("Copying public folder files..");
+        fs.copy(path.join(__dirname, "../public"), `${process.argv[2]}/public`)
+          .then(() =>
+            console.log(
+              `Public folder created`
+            )
+          )
+          .catch((err) => console.error(err));
 
         console.log("Copying additional files..");
         // copy additional source files
