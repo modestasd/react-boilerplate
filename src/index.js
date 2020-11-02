@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import GlobalStyle from './globalStyles';
+import GlobalStyle from './styles/globalStyles';
 import store from './redux/store';
 
 ReactDOM.render(

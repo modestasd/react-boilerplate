@@ -92,6 +92,15 @@ exec(
           )
           .catch((err) => console.error(err));
 
+        console.log("Copying generator folder files..");
+        fs.copy(path.join(__dirname, "../generator"), `${process.argv[2]}/generator`)
+          .then(() =>
+            console.log(
+              `Generator folder created`
+            )
+          )
+          .catch((err) => console.error(err));
+
         console.log("Copying additional files..");
         // copy additional source files
         fs.copy(path.join(__dirname, "../src"), `${process.argv[2]}/src`)
